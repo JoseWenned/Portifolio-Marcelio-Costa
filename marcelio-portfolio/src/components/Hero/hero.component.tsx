@@ -94,6 +94,23 @@ export function Hero() {
               >
                 Ver experiência
               </motion.a>
+
+              <motion.a
+                href="/docs/curriculo.pdf"
+                download="curriculo.pdf"
+                className={styles.secondaryButton}
+                whileHover={{ y: -3 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span>Baixar currículo</span>
+
+                <span
+                  className={styles.buttonArrow}
+                  aria-hidden="true"
+                >
+                  ↓
+                </span>
+              </motion.a>
             </motion.div>
           </motion.div>
 

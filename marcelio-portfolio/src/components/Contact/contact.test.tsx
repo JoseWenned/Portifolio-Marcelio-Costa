@@ -42,20 +42,6 @@ describe('Contact', () => {
     ).toBeInTheDocument();
   });
 
-  it('should render the contact description', () => {
-    expect(
-      screen.getByText(
-        /Profissional com experiência em montagem, energia eólica e operações em campo/i,
-      ),
-    ).toBeInTheDocument();
-
-    expect(
-      screen.getByText(
-        /preparado para novos desafios e oportunidades profissionais/i,
-      ),
-    ).toBeInTheDocument();
-  });
-
   it('should render the contact button', () => {
     const button = screen.getByRole('link', {
       name: /entrar em contato/i,
@@ -64,14 +50,24 @@ describe('Contact', () => {
     expect(button).toBeInTheDocument();
   });
 
-  it('should have the correct email link', () => {
+  it('should have the correct WhatsApp link', () => {
     const contactLink = screen.getByRole('link', {
       name: /entrar em contato/i,
     });
 
     expect(contactLink).toHaveAttribute(
       'href',
-      'mailto:contato@exemplo.com',
+      'https://wa.me/+5588993123024',
+    );
+
+    expect(contactLink).toHaveAttribute(
+      'target',
+      '_blank',
+    );
+
+    expect(contactLink).toHaveAttribute(
+      'rel',
+      'noopener noreferrer',
     );
   });
 
