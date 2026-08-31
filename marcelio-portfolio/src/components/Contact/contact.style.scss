@@ -1,0 +1,273 @@
+@use '../../styles/variables' as *;
+
+.contact {
+  position: relative;
+
+  padding: 120px 0 48px;
+
+  overflow: hidden;
+
+  background: $color-black;
+}
+
+.contact::before {
+  content: '';
+
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: 520px;
+  height: 520px;
+
+  border-radius: 50%;
+
+  background: $color-yellow;
+
+  opacity: 0.035;
+
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.contact-content {
+  position: relative;
+  z-index: 1;
+
+  max-width: 900px;
+
+  padding-bottom: 96px;
+}
+
+.contact-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 20px;
+
+  color: $color-yellow;
+
+  font-size: $font-size-xs;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.contact-eyebrow::before {
+  content: '';
+
+  width: 32px;
+  height: 2px;
+
+  background: $color-yellow;
+}
+
+.contact-title {
+  max-width: 900px;
+
+  margin: 0;
+
+  color: $color-white;
+
+  font-size: $font-size-xxl;
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+
+.contact-title-highlight {
+  color: $color-yellow;
+}
+
+.contact-description {
+  max-width: 620px;
+
+  margin: 28px 0 0;
+
+  color: $color-gray;
+
+  font-size: $font-size-md;
+  line-height: 1.75;
+}
+
+.contact-actions {
+  display: flex;
+
+  margin-top: 40px;
+}
+
+.contact-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+
+  min-width: 220px;
+
+  padding: 16px 18px 16px 24px;
+
+  border: 1px solid $color-yellow;
+  border-radius: $radius-md;
+
+  background: $color-yellow;
+
+  color: $color-black;
+
+  font-size: $font-size-sm;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition:
+    background-color $transition-default,
+    color $transition-default,
+    border-color $transition-default,
+    transform $transition-default;
+}
+
+.contact-button:hover {
+  border-color: $color-yellow-light;
+
+  background: $color-yellow-light;
+
+  transform: translateY(-3px);
+}
+
+.contact-button-text {
+  white-space: nowrap;
+}
+
+.contact-button-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+
+  background: $color-black;
+
+  color: $color-yellow;
+
+  font-size: $font-size-md;
+
+  transition:
+    transform $transition-default,
+    background-color $transition-default,
+    color $transition-default;
+}
+
+.contact-button:hover .contact-button-arrow {
+  background: $color-black-light;
+
+  color: $color-yellow-light;
+
+  transform: translate(3px, -3px);
+}
+
+.contact-footer {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  padding-top: 28px;
+}
+
+.contact-footer-label {
+  color: $color-gray;
+
+  font-size: $font-size-xs;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.contact-footer-line {
+  width: 48px;
+  height: 1px;
+
+  background: $color-gray-dark;
+}
+
+.contact-footer-location {
+  color: $color-gray;
+
+  font-size: $font-size-xs;
+}
+
+@media (max-width: 768px) {
+  .contact {
+    padding: 90px 0 36px;
+  }
+
+  .contact-content {
+    padding-bottom: 72px;
+  }
+
+  .contact-title {
+    font-size: $font-size-xxl;
+  }
+
+  .contact-description {
+    margin-top: 22px;
+
+    font-size: $font-size-sm;
+  }
+
+  .contact-actions {
+    margin-top: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact {
+    padding: 70px 0 28px;
+  }
+
+  .contact-content {
+    padding-bottom: 56px;
+  }
+
+  .contact-eyebrow {
+    gap: 8px;
+  }
+
+  .contact-eyebrow::before {
+    width: 24px;
+  }
+
+  .contact-title {
+    font-size: $font-size-xl;
+    line-height: 1.1;
+  }
+
+  .contact-description {
+    font-size: $font-size-sm;
+    line-height: 1.65;
+  }
+
+  .contact-button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .contact-footer {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .contact-footer-label {
+    width: 100%;
+  }
+
+  .contact-footer-line {
+    display: none;
+  }
+}

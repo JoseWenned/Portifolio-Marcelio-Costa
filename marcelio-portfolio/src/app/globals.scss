@@ -1,0 +1,27 @@
+@use "../styles/variables" as *;
+@use "../styles/reset";
+@use "../styles/mixins";
+
+:root {
+  --background: #{$color-black};
+  --foreground: #{$color-white};
+}
+
+body {
+  background: $color-black;
+  color: $color-white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+  overflow: hidden;
+}
+
+.container {
+  @include mixins.container;
+}
+
+::selection {
+  background: $color-yellow;
+  color: $color-black;
+}

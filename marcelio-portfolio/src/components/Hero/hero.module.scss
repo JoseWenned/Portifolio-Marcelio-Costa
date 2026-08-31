@@ -1,0 +1,652 @@
+@use '../../styles/variables' as *;
+
+.hero {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  min-height: 100svh;
+
+  padding: 7rem 0 4rem;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 90% 35%,
+      rgba(245, 196, 0, 0.08),
+      transparent 28%
+    ),
+    $color-black;
+}
+
+.backgroundGrid {
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.18;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 3rem 3rem;
+
+  mask-image: linear-gradient(
+    90deg,
+    black 0%,
+    transparent 90%
+  );
+
+  pointer-events: none;
+}
+
+.backgroundGlow {
+  position: absolute;
+  top: 20%;
+  right: -12rem;
+
+  width: 24rem;
+  height: 24rem;
+
+  border-radius: 50%;
+
+  background: rgba(245, 196, 0, 0.05);
+
+  filter: blur(5rem);
+
+  pointer-events: none;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+}
+
+.heroText {
+  width: 100%;
+  max-width: 45rem;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  margin-bottom: 1.25rem;
+
+  color: $color-yellow;
+
+  font-size: $font-size-xs;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  text-transform: uppercase;
+
+  &::before {
+    content: '';
+
+    flex-shrink: 0;
+
+    width: 1.5rem;
+    height: 2px;
+
+    background: $color-yellow;
+  }
+}
+
+.title {
+  width: 100%;
+  max-width: 100%;
+
+  color: $color-white;
+
+  font-size: clamp(2.5rem, 11vw, 5rem);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.titleHighlight {
+  display: block;
+
+  color: transparent;
+
+  -webkit-text-stroke: 1px $color-yellow;
+}
+
+.description {
+  width: 100%;
+  max-width: 34rem;
+
+  margin-top: 1.5rem;
+
+  color: $color-gray;
+
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  width: 100%;
+
+  margin-top: 2rem;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+
+  width: 100%;
+  min-height: 3.25rem;
+
+  padding: 0 1.25rem;
+
+  border: 1px solid transparent;
+
+  font-size: $font-size-sm;
+  font-weight: 700;
+  line-height: 1;
+
+  transition:
+    transform $transition-default,
+    background $transition-default,
+    border-color $transition-default,
+    color $transition-default;
+}
+
+.primaryButton {
+  background: $color-yellow;
+
+  color: $color-black;
+
+  &:hover {
+    background: $color-yellow-light;
+
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-white;
+    outline-offset: 3px;
+  }
+}
+
+.buttonArrow {
+  font-size: 1.1rem;
+  line-height: 1;
+
+  transition: transform $transition-default;
+
+  .primaryButton:hover & {
+    transform: translate(2px, -2px);
+  }
+}
+
+.secondaryButton {
+  border-color: $color-gray-dark;
+
+  color: $color-white;
+
+  &:hover {
+    border-color: $color-yellow;
+
+    color: $color-yellow;
+
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-yellow;
+    outline-offset: 3px;
+  }
+}
+
+/*
+ * Visual
+ */
+
+.heroVisual {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  min-height: 24rem;
+
+  margin-top: 3.5rem;
+}
+
+/*
+ * Detalhe amarelo atrás da caixa
+ */
+
+.visualAccent {
+  position: absolute;
+
+  top: 0;
+  right: 4%;
+
+  width: 75%;
+  height: 82%;
+
+  background: $color-yellow;
+
+  clip-path: polygon(
+    12% 0,
+    100% 0,
+    88% 100%,
+    0 100%
+  );
+
+  opacity: 0.9;
+}
+
+/*
+ * Caixa principal
+ *
+ * No mobile ela NÃO usa position absolute.
+ * Isso faz com que ela acompanhe naturalmente
+ * o conteúdo e permaneça centralizada.
+ */
+
+.visualCard {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+
+  width: min(88%, 25rem);
+
+  min-height: 21rem;
+
+  padding: 1rem;
+
+  overflow: hidden;
+
+  background: $color-black-light;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  box-shadow:
+    0.75rem 0.75rem 0 rgba(0, 0, 0, 0.45),
+    inset 0 0 0 1px rgba(245, 196, 0, 0.06);
+}
+
+/*
+ * Cabeçalho
+ */
+
+.visualHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  flex-shrink: 0;
+
+  padding-bottom: 0.75rem;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.visualLabel {
+  max-width: 80%;
+
+  overflow: hidden;
+
+  color: $color-gray;
+
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.3;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.visualStatus {
+  flex-shrink: 0;
+
+  color: $color-yellow;
+
+  font-size: $font-size-xs;
+  font-weight: 800;
+}
+
+/*
+ * Área da fotografia
+ */
+
+.visualMain {
+  position: relative;
+
+  width: 100%;
+
+  height: 14rem;
+
+  margin: 0.75rem 0;
+
+  overflow: hidden;
+
+  background: $color-black;
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/*
+ * Fotografia
+ */
+
+.profileImage {
+  position: absolute !important;
+
+  inset: 0;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  object-fit: contain;
+
+  object-position: center;
+
+  image-rendering: auto;
+}
+
+/*
+ * Rodapé
+ */
+
+.visualFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  flex-shrink: 0;
+
+  gap: 0.5rem;
+
+  padding-top: 0.75rem;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  color: $color-gray;
+
+  font-size: 0.45rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.visualFooter span {
+  white-space: nowrap;
+}
+
+/*
+ * Scroll
+ */
+
+.scrollIndicator {
+  position: absolute;
+
+  right: 1.5rem;
+  bottom: 1.5rem;
+
+  display: none;
+
+  flex-direction: column;
+  align-items: center;
+
+  gap: 0.5rem;
+
+  color: $color-gray;
+}
+
+.scrollLabel {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.scrollLine {
+  width: 1px;
+  height: 2.5rem;
+
+  background: linear-gradient(
+    to bottom,
+    $color-yellow,
+    transparent
+  );
+}
+
+/*
+ * Mobile pequeno
+ */
+
+@media (max-width: 639px) {
+  .hero {
+    padding-top: 6.5rem;
+    padding-bottom: 3rem;
+  }
+
+  .heroContent {
+    width: 100%;
+  }
+
+  .heroVisual {
+    min-height: 23rem;
+
+    margin-top: 3rem;
+  }
+
+  .visualAccent {
+    top: 0;
+    right: 2%;
+
+    width: 82%;
+    height: 80%;
+  }
+
+  .visualCard {
+    width: calc(100% - 2rem);
+
+    min-height: 21rem;
+
+    padding: 0.85rem;
+  }
+
+  .visualMain {
+    height: 14rem;
+  }
+
+  .visualFooter {
+    font-size: 0.4rem;
+  }
+}
+
+/*
+ * Tablet
+ */
+
+@media (min-width: 640px) {
+  .hero {
+    padding-top: 8rem;
+  }
+
+  .heroVisual {
+    min-height: 25rem;
+
+    margin-top: 4rem;
+  }
+
+  .actions {
+    flex-direction: row;
+
+    width: auto;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: auto;
+
+    min-width: 11rem;
+  }
+
+  .visualCard {
+    width: min(70%, 25rem);
+
+    min-height: 22rem;
+  }
+
+  .visualMain {
+    height: 15rem;
+  }
+}
+
+/*
+ * Desktop
+ */
+
+@media (min-width: 768px) {
+  .hero {
+    padding: 8rem 0 5rem;
+  }
+
+  .heroContent {
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 1.05fr)
+      minmax(20rem, 0.95fr);
+
+    align-items: center;
+
+    gap: 3rem;
+  }
+
+  .title {
+    font-size: clamp(4rem, 7vw, 6.5rem);
+  }
+
+  .description {
+    margin-top: 2rem;
+
+    font-size: 1rem;
+  }
+
+  /*
+   * A partir daqui o visual volta
+   * a usar posicionamento sobreposto.
+   */
+
+  .heroVisual {
+    display: block;
+
+    height: 32rem;
+    min-height: 0;
+
+    margin-top: 0;
+  }
+
+  .visualAccent {
+    top: 0;
+    right: 4%;
+
+    width: 78%;
+    height: 78%;
+  }
+
+  .visualCard {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 78%;
+    height: 70%;
+    min-height: 0;
+
+    padding: 1.25rem;
+
+    transform: translate(-50%, -50%);
+  }
+
+  .visualMain {
+    height: auto;
+
+    flex: 1;
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .profileImage {
+    object-fit: contain;
+  }
+
+  .scrollIndicator {
+    display: flex;
+  }
+}
+
+/*
+ * Large desktop
+ */
+
+@media (min-width: 1024px) {
+  .hero {
+    padding-bottom: 6rem;
+  }
+
+  .heroContent {
+    gap: 5rem;
+  }
+
+  .heroVisual {
+    height: 36rem;
+  }
+
+  .visualCard {
+    width: 76%;
+  }
+}
+
+/*
+ * Reduced motion
+ */
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryButton,
+  .secondaryButton,
+  .buttonArrow {
+    transition: none;
+  }
+}
