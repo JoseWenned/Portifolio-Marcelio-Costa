@@ -1,0 +1,238 @@
+@use '../../styles/variables' as *;
+
+.about {
+  position: relative;
+
+  padding: 6rem 0;
+
+  overflow: hidden;
+
+  background: $color-black-light;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    width: 35%;
+    height: 1px;
+
+    background: linear-gradient(
+      90deg,
+      transparent,
+      $color-yellow
+    );
+
+    opacity: 0.7;
+  }
+}
+
+.header {
+  max-width: 52rem;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  margin-bottom: 1.25rem;
+
+  color: $color-yellow;
+
+  font-size: $font-size-xs;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  &::before {
+    content: '';
+
+    width: 1.5rem;
+    height: 2px;
+
+    background: $color-yellow;
+  }
+}
+
+.title {
+  color: $color-white;
+
+  font-size: clamp(2.4rem, 9vw, 5rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+
+  span {
+    color: transparent;
+
+    -webkit-text-stroke: 1px $color-yellow;
+  }
+}
+
+.content {
+  display: grid;
+
+  gap: 3rem;
+
+  margin-top: 3.5rem;
+}
+
+.text {
+  max-width: 40rem;
+
+  p {
+    margin-bottom: 1.25rem;
+
+    color: $color-gray;
+
+    font-size: 0.95rem;
+    line-height: 1.8;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.infoCard {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+
+  gap: 1rem;
+
+  padding: 1.5rem 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  transition:
+    padding $transition-default,
+    border-color $transition-default;
+
+  &:hover {
+    padding-left: 0.5rem;
+
+    border-color: rgba(245, 196, 0, 0.5);
+  }
+}
+
+.number {
+  color: $color-yellow;
+
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.infoCard strong {
+  display: block;
+
+  margin-bottom: 0.4rem;
+
+  color: $color-white;
+
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.infoCard p {
+  color: $color-gray;
+
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.bottomLine {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  margin-top: 3rem;
+  padding-top: 1rem;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  color: $color-gray-dark;
+
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+/*
+ * Tablet
+ */
+
+@media (min-width: 640px) {
+  .about {
+    padding: 7rem 0;
+  }
+
+  .bottomLine {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/*
+ * Desktop
+ */
+
+@media (min-width: 768px) {
+  .about {
+    padding: 8rem 0;
+  }
+
+  .content {
+    grid-template-columns:
+      minmax(0, 1.1fr)
+      minmax(20rem, 0.9fr);
+
+    gap: 5rem;
+
+    margin-top: 5rem;
+  }
+
+  .text p {
+    font-size: 1rem;
+  }
+}
+
+/*
+ * Large desktop
+ */
+
+@media (min-width: 1024px) {
+  .about {
+    padding: 9rem 0;
+  }
+
+  .content {
+    gap: 7rem;
+  }
+
+  .infoCard {
+    padding: 1.75rem 0;
+  }
+}
+
+/*
+ * Reduced motion
+ */
+
+@media (prefers-reduced-motion: reduce) {
+  .infoCard {
+    transition: none;
+  }
+}

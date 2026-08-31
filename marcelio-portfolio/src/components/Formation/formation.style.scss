@@ -1,0 +1,286 @@
+@use '../../styles/variables' as *;
+
+.formation {
+  position: relative;
+  padding: 120px 0;
+  overflow: hidden;
+  background: $color-black-light;
+}
+
+.formation-header {
+  max-width: 760px;
+  margin-bottom: 72px;
+}
+
+.formation-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 20px;
+
+  color: $color-yellow;
+  font-size: $font-size-xs;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.formation-eyebrow::before {
+  content: '';
+
+  width: 32px;
+  height: 2px;
+
+  background: $color-yellow;
+}
+
+.formation-title {
+  max-width: 850px;
+
+  margin: 0;
+
+  color: $color-white;
+  font-size: $font-size-xxl;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.formation-title-highlight {
+  color: $color-yellow;
+}
+
+.formation-description {
+  max-width: 620px;
+
+  margin: 24px 0 0;
+
+  color: $color-gray;
+  font-size: $font-size-md;
+  line-height: 1.7;
+}
+
+.formation-list {
+  position: relative;
+
+  border-top: 1px solid $color-gray-dark;
+}
+
+.formation-item {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 140px 40px 1fr;
+  align-items: stretch;
+
+  min-height: 150px;
+
+  border-bottom: 1px solid $color-gray-dark;
+
+  transition:
+    background-color $transition-default,
+    transform $transition-default;
+}
+
+.formation-item:hover {
+  background: $color-black-card;
+}
+
+.formation-year {
+  display: flex;
+  align-items: flex-start;
+
+  padding: 36px 24px 36px 0;
+
+  color: $color-yellow;
+  font-size: $font-size-md;
+  font-weight: 700;
+}
+
+.formation-divider {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+
+  width: 40px;
+}
+
+.formation-divider::before {
+  content: '';
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  width: 1px;
+
+  background: $color-gray-dark;
+}
+
+.formation-dot {
+  position: relative;
+  z-index: 1;
+
+  width: 10px;
+  height: 10px;
+
+  margin-top: 40px;
+
+  border: 2px solid $color-yellow;
+  border-radius: 50%;
+
+  background: $color-black-light;
+
+  transition:
+    background-color $transition-default,
+    transform $transition-default;
+}
+
+.formation-item:hover .formation-dot {
+  background: $color-yellow;
+
+  transform: scale(1.25);
+}
+
+.formation-content {
+  padding: 34px 0 34px 32px;
+}
+
+.formation-type {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: $color-gray;
+  font-size: $font-size-xs;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.formation-item-title {
+  margin: 0 0 8px;
+
+  color: $color-white;
+  font-size: $font-size-lg;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.formation-institution {
+  margin: 0;
+
+  color: $color-gray;
+  font-size: $font-size-sm;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .formation {
+    padding: 80px 0;
+  }
+
+  .formation-header {
+    margin-bottom: 48px;
+  }
+
+  .formation-title {
+    font-size: $font-size-xxl;
+  }
+
+  .formation-item {
+    grid-template-columns: 90px 32px 1fr;
+    min-height: 130px;
+  }
+
+  .formation-year {
+    padding: 28px 16px 28px 0;
+
+    font-size: $font-size-sm;
+  }
+
+  .formation-divider {
+    width: 32px;
+  }
+
+  .formation-dot {
+    margin-top: 32px;
+  }
+
+  .formation-content {
+    padding: 26px 0 26px 20px;
+  }
+
+  .formation-item-title {
+    font-size: $font-size-md;
+  }
+}
+
+@media (max-width: 480px) {
+  .formation {
+    padding: 64px 0;
+  }
+
+  .formation-header {
+    margin-bottom: 36px;
+  }
+
+  .formation-eyebrow {
+    gap: 8px;
+  }
+
+  .formation-eyebrow::before {
+    width: 24px;
+  }
+
+  .formation-title {
+    font-size: $font-size-xl;
+    line-height: 1.1;
+  }
+
+  .formation-description {
+    font-size: $font-size-sm;
+  }
+
+  .formation-item {
+    grid-template-columns: 58px 24px 1fr;
+  }
+
+  .formation-year {
+    padding: 24px 8px 24px 0;
+
+    font-size: $font-size-xs;
+  }
+
+  .formation-divider {
+    width: 24px;
+  }
+
+  .formation-dot {
+    width: 8px;
+    height: 8px;
+
+    margin-top: 29px;
+  }
+
+  .formation-content {
+    padding: 22px 0 22px 16px;
+  }
+
+  .formation-type {
+    margin-bottom: 6px;
+    font-size: 0.65rem;
+  }
+
+  .formation-item-title {
+    margin-bottom: 6px;
+    font-size: $font-size-md;
+  }
+
+  .formation-institution {
+    font-size: $font-size-xs;
+  }
+}

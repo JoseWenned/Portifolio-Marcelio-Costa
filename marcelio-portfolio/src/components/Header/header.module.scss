@@ -1,0 +1,305 @@
+@use '../../styles/variables' as *;
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: $z-header;
+
+  width: 100%;
+  padding: 1rem 0;
+
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 3.5rem;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+
+  color: $color-white;
+
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  line-height: 1;
+
+  transition: opacity $transition-default;
+
+  &:hover {
+    opacity: 0.75;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-yellow;
+    outline-offset: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 1.1rem;
+  }
+}
+
+.logoHighlight {
+  color: $color-yellow;
+}
+
+.desktopNavigation {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
+
+  @media (min-width: 1024px) {
+    gap: 2.5rem;
+  }
+}
+
+.navigationLink {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  padding: 0.75rem 0;
+
+  color: $color-gray;
+
+  font-size: $font-size-sm;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+
+  transition:
+    color $transition-default,
+    transform $transition-default;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    width: 0;
+    height: 2px;
+
+    background: $color-yellow;
+
+    transition: width $transition-default;
+  }
+
+  &:hover {
+    color: $color-white;
+    transform: translateY(-2px);
+
+    &::after {
+      width: 100%;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-yellow;
+    outline-offset: 0.4rem;
+  }
+}
+
+.menuButton {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+
+  width: 3rem;
+  height: 3rem;
+
+  padding: 0;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  cursor: pointer;
+
+  transition:
+    background $transition-default,
+    border-color $transition-default;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+
+  &:hover {
+    background: rgba(245, 196, 0, 0.08);
+
+    border-color: rgba(245, 196, 0, 0.4);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-yellow;
+    outline-offset: 0.25rem;
+  }
+}
+
+.menuLine {
+  display: block;
+
+  width: 1.15rem;
+  height: 2px;
+
+  margin-inline: auto;
+
+  background: $color-white;
+
+  transition:
+    transform $transition-default,
+    opacity $transition-default;
+}
+
+.menuButtonActive {
+  .menuLine:first-child {
+    transform: translateY(3px) rotate(45deg);
+  }
+
+  .menuLine:last-child {
+    transform: translateY(-3px) rotate(-45deg);
+  }
+}
+
+/*
+ * Mobile Navigation
+ */
+
+.mobileNavigation {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: $z-header;
+
+  width: 100%;
+
+  background: rgba(10, 10, 10, 0.98);
+
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+  pointer-events: auto;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.mobileNavigationContent {
+  padding: 2rem 0 2.5rem;
+}
+
+.mobileNavigationLabel {
+  display: block;
+
+  margin-bottom: 1.5rem;
+
+  color: $color-yellow;
+
+  font-size: $font-size-xs;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.mobileNavigationLinks {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileNavigationLink {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr auto;
+  align-items: center;
+  gap: 1rem;
+
+  min-height: 4.5rem;
+
+  color: $color-white;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  transition:
+    color $transition-default,
+    padding $transition-default;
+
+  &:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  &:hover {
+    padding-left: 0.5rem;
+
+    color: $color-yellow;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-yellow;
+    outline-offset: -2px;
+  }
+}
+
+.mobileNavigationNumber {
+  color: $color-yellow;
+
+  font-size: $font-size-xs;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.mobileNavigationArrow {
+  color: $color-gray;
+
+  font-size: 1.25rem;
+
+  transition:
+    color $transition-default,
+    transform $transition-default;
+
+  .mobileNavigationLink:hover & {
+    color: $color-yellow;
+
+    transform: translate(2px, -2px);
+  }
+}
+
+/*
+ * Reduced Motion
+ */
+
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .logo,
+  .navigationLink,
+  .menuButton,
+  .menuLine,
+  .mobileNavigation,
+  .mobileNavigationLink,
+  .mobileNavigationArrow {
+    transition: none;
+  }
+}
