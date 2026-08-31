@@ -1,7 +1,6 @@
 import { About } from "@/components/About/about.component";
 import { Header } from "../components/Header/header.component";
 import { Hero } from '../components/Hero/hero.component';
-import { Exception } from "sass";
 import { Experience } from "@/components/Experience/experience.component";
 import { Skills } from "@/components/Skills/skills.component";
 import { Formation } from "@/components/Formation/formation.component";

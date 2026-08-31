@@ -29,9 +29,20 @@ describe('Hero', () => {
     });
 
     expect(contactLink).toBeInTheDocument();
+
     expect(contactLink).toHaveAttribute(
       'href',
-      expect.stringContaining('mailto:'),
+      'https://wa.me/+5588993123024',
+    );
+
+    expect(contactLink).toHaveAttribute(
+      'target',
+      '_blank',
+    );
+
+    expect(contactLink).toHaveAttribute(
+      'rel',
+      'noopener noreferrer',
     );
   });
 
@@ -63,7 +74,9 @@ describe('Hero', () => {
       screen.getByText('MARCÉLIO COSTA RIBEIRO'),
     ).toBeInTheDocument();
 
-    expect(screen.getByText('MCR')).toBeInTheDocument();
+    expect(
+      screen.getByAltText('Marcélio Costa Ribeiro')
+    ).toBeInTheDocument();
 
     expect(
       screen.getByText('OPERAÇÃO'),
@@ -76,5 +89,23 @@ describe('Hero', () => {
     expect(
       screen.getByText('EXPERIÊNCIA'),
     ).toBeInTheDocument();
+  });
+
+  it('should render the curriculum download link', () => {
+    const curriculumLink = screen.getByRole('link', {
+      name: /baixar currículo/i,
+    });
+
+    expect(curriculumLink).toBeInTheDocument();
+
+    expect(curriculumLink).toHaveAttribute(
+      'href',
+      '/docs/curriculo.pdf',
+    );
+
+    expect(curriculumLink).toHaveAttribute(
+      'download',
+      'curriculo.pdf',
+    );
   });
 });

@@ -27,7 +27,7 @@ describe('Footer', () => {
   it('should render the footer description', () => {
     expect(
       screen.getByText(
-        /Profissional com experiência em montagem, energia eólica e operações em campo/i,
+        /Profissional com experiência operação de retroesvadeiras, montagem, energia eólica e operações em campo/i,
       ),
     ).toBeInTheDocument();
   });
@@ -49,14 +49,27 @@ describe('Footer', () => {
     ).toBeInTheDocument();
   });
 
-  it('should render all navigation links', () => {
-    const navigation = screen.getByRole('navigation', {
-      name: /navegação do rodapé/i,
+  it('should render the WhatsApp contact link', () => {
+    const contactLink = screen.getByRole('link', {
+      name: /entrar em contato/i,
     });
 
-    const links = navigation.querySelectorAll('a');
+    expect(contactLink).toBeInTheDocument();
 
-    expect(links).toHaveLength(5);
+    expect(contactLink).toHaveAttribute(
+      'href',
+      'https://wa.me/+5588993123024',
+    );
+
+    expect(contactLink).toHaveAttribute(
+      'target',
+      '_blank',
+    );
+
+    expect(contactLink).toHaveAttribute(
+      'rel',
+      'noopener noreferrer',
+    );
   });
 
   it('should render the Início navigation link', () => {
@@ -114,18 +127,6 @@ describe('Footer', () => {
     expect(contactTitle).toBeInTheDocument();
     expect(contactTitle).toHaveClass(
       'footer-contact-title',
-    );
-  });
-
-  it('should render the contact link', () => {
-    const contactLink = screen.getByRole('link', {
-      name: /entrar em contato/i,
-    });
-
-    expect(contactLink).toBeInTheDocument();
-    expect(contactLink).toHaveAttribute(
-      'href',
-      '#contato',
     );
   });
 
