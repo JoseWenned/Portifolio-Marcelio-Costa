@@ -1,12 +1,21 @@
 @use '../../styles/variables' as *;
 
+/*
+ * =========================================================
+ * HERO
+ * =========================================================
+ */
+
 .hero {
   position: relative;
 
   display: flex;
   align-items: center;
 
+  width: 100%;
   min-height: 100svh;
+
+  box-sizing: border-box;
 
   padding: 7rem 0 4rem;
 
@@ -14,18 +23,24 @@
 
   background:
     radial-gradient(
-      circle at 90% 35%,
-      rgba(245, 196, 0, 0.08),
-      transparent 28%
+      circle at 85% 35%,
+      rgba(245, 196, 0, 0.07),
+      transparent 30%
     ),
     $color-black;
 }
+
+/*
+ * =========================================================
+ * BACKGROUND
+ * =========================================================
+ */
 
 .backgroundGrid {
   position: absolute;
   inset: 0;
 
-  opacity: 0.18;
+  opacity: 0.12;
 
   background-image:
     linear-gradient(
@@ -41,7 +56,7 @@
   background-size: 3rem 3rem;
 
   mask-image: linear-gradient(
-    90deg,
+    to right,
     black 0%,
     transparent 90%
   );
@@ -51,6 +66,7 @@
 
 .backgroundGlow {
   position: absolute;
+
   top: 20%;
   right: -12rem;
 
@@ -61,29 +77,46 @@
 
   background: rgba(245, 196, 0, 0.05);
 
-  filter: blur(5rem);
+  filter: blur(6rem);
 
   pointer-events: none;
 }
+
+/*
+ * =========================================================
+ * CONTEÚDO
+ * =========================================================
+ */
 
 .heroContent {
   position: relative;
   z-index: 1;
 
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
 
   width: 100%;
+  min-width: 0;
+
+  gap: 3rem;
 }
+
+/*
+ * =========================================================
+ * TEXTO
+ * =========================================================
+ */
 
 .heroText {
   width: 100%;
-  max-width: 45rem;
+  min-width: 0;
+  max-width: 48rem;
 }
 
 .eyebrow {
   display: inline-flex;
   align-items: center;
+
   gap: 0.6rem;
 
   margin-bottom: 1.25rem;
@@ -92,8 +125,10 @@
 
   font-size: $font-size-xs;
   font-weight: 700;
+
   letter-spacing: 0.12em;
   line-height: 1.4;
+
   text-transform: uppercase;
 
   &::before {
@@ -110,56 +145,82 @@
 
 .title {
   width: 100%;
-  max-width: 100%;
+  min-width: 0;
+
+  margin: 0;
 
   color: $color-white;
 
-  font-size: clamp(2.5rem, 11vw, 5rem);
+  /*
+   * Tamanho controlado para nunca criar
+   * overflow horizontal.
+   */
+  font-size: clamp(2.8rem, 11vw, 5rem);
+
   font-weight: 900;
-  line-height: 0.92;
-  letter-spacing: -0.045em;
+
+  line-height: 0.9;
+
+  letter-spacing: -0.055em;
+
   text-transform: uppercase;
 
-  overflow-wrap: break-word;
+  /*
+   * ESSENCIAL:
+   * permite quebrar palavras muito grandes.
+   */
+  overflow-wrap: anywhere;
   word-break: normal;
 }
 
 .titleHighlight {
   display: block;
 
+  max-width: 100%;
+
   color: transparent;
 
-  -webkit-text-stroke: 1px $color-yellow;
+  -webkit-text-stroke: 1.5px $color-yellow;
+
+  /*
+   * Impede RETROESCAVADEIRAS de estourar
+   * a largura da tela.
+   */
+  overflow-wrap: anywhere;
 }
+
+/*
+ * =========================================================
+ * DESCRIÇÃO
+ * =========================================================
+ */
 
 .description {
   width: 100%;
   max-width: 34rem;
 
-  margin-top: 1.5rem;
+  margin: 1.5rem 0 0;
 
   color: $color-gray;
 
   font-size: 0.95rem;
+
   line-height: 1.7;
 }
 
-// .actions {
-//   display: flex;
-//   flex-direction: column;
-//   gap: 0.75rem;
-
-//   width: 100%;
-
-//   margin-top: 2rem;
-// }
+/*
+ * =========================================================
+ * BOTÕES
+ * =========================================================
+ */
 
 .actions {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
 
   width: 100%;
+
+  gap: 0.75rem;
 
   margin-top: 2rem;
 }
@@ -169,10 +230,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.65rem;
 
   width: 100%;
   min-height: 3.25rem;
+
+  box-sizing: border-box;
+
+  gap: 0.65rem;
 
   padding: 0 1.25rem;
 
@@ -180,7 +244,10 @@
 
   font-size: $font-size-sm;
   font-weight: 700;
+
   line-height: 1;
+
+  white-space: nowrap;
 
   transition:
     transform $transition-default,
@@ -206,17 +273,6 @@
   }
 }
 
-.buttonArrow {
-  font-size: 1.1rem;
-  line-height: 1;
-
-  transition: transform $transition-default;
-
-  .primaryButton:hover & {
-    transform: translate(2px, -2px);
-  }
-}
-
 .secondaryButton {
   border-color: $color-gray-dark;
 
@@ -236,8 +292,24 @@
   }
 }
 
+.buttonArrow {
+  flex-shrink: 0;
+
+  font-size: 1.1rem;
+
+  line-height: 1;
+
+  transition: transform $transition-default;
+
+  .primaryButton:hover & {
+    transform: translate(2px, -2px);
+  }
+}
+
 /*
- * Visual
+ * =========================================================
+ * ÁREA VISUAL
+ * =========================================================
  */
 
 .heroVisual {
@@ -248,24 +320,25 @@
   justify-content: center;
 
   width: 100%;
+  min-width: 0;
 
   min-height: 24rem;
-
-  margin-top: 3.5rem;
 }
 
 /*
- * Detalhe amarelo atrás da caixa
+ * =========================================================
+ * BLOCO AMARELO
+ * =========================================================
  */
 
 .visualAccent {
   position: absolute;
 
-  top: 0;
-  right: 4%;
+  top: 2%;
+  right: 5%;
 
-  width: 75%;
-  height: 82%;
+  width: 70%;
+  height: 72%;
 
   background: $color-yellow;
 
@@ -276,15 +349,13 @@
     0 100%
   );
 
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 /*
- * Caixa principal
- *
- * No mobile ela NÃO usa position absolute.
- * Isso faz com que ela acompanhe naturalmente
- * o conteúdo e permaneça centralizada.
+ * =========================================================
+ * CARD
+ * =========================================================
  */
 
 .visualCard {
@@ -294,25 +365,25 @@
   display: flex;
   flex-direction: column;
 
-  width: min(88%, 25rem);
+  width: min(88%, 24rem);
 
-  min-height: 21rem;
+  box-sizing: border-box;
 
   padding: 1rem;
 
-  overflow: hidden;
-
   background: $color-black-light;
 
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
   box-shadow:
-    0.75rem 0.75rem 0 rgba(0, 0, 0, 0.45),
-    inset 0 0 0 1px rgba(245, 196, 0, 0.06);
+    0 1.5rem 3rem rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(245, 196, 0, 0.03);
 }
 
 /*
- * Cabeçalho
+ * =========================================================
+ * HEADER DO CARD
+ * =========================================================
  */
 
 .visualHeader {
@@ -320,7 +391,7 @@
   align-items: center;
   justify-content: space-between;
 
-  flex-shrink: 0;
+  gap: 1rem;
 
   padding-bottom: 0.75rem;
 
@@ -328,7 +399,7 @@
 }
 
 .visualLabel {
-  max-width: 80%;
+  min-width: 0;
 
   overflow: hidden;
 
@@ -336,6 +407,7 @@
 
   font-size: 0.5rem;
   font-weight: 700;
+
   letter-spacing: 0.1em;
   line-height: 1.3;
 
@@ -353,7 +425,9 @@
 }
 
 /*
- * Área da fotografia
+ * =========================================================
+ * FOTO
+ * =========================================================
  */
 
 .visualMain {
@@ -361,7 +435,7 @@
 
   width: 100%;
 
-  height: 14rem;
+  aspect-ratio: 4 / 3;
 
   margin: 0.75rem 0;
 
@@ -371,10 +445,6 @@
 
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
-
-/*
- * Fotografia
- */
 
 .profileImage {
   position: absolute !important;
@@ -387,20 +457,18 @@
   object-fit: contain;
 
   object-position: center;
-
-  image-rendering: auto;
 }
 
 /*
- * Rodapé
+ * =========================================================
+ * FOOTER DO CARD
+ * =========================================================
  */
 
 .visualFooter {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  flex-shrink: 0;
 
   gap: 0.5rem;
 
@@ -412,6 +480,7 @@
 
   font-size: 0.45rem;
   font-weight: 700;
+
   letter-spacing: 0.08em;
 }
 
@@ -420,7 +489,9 @@
 }
 
 /*
- * Scroll
+ * =========================================================
+ * SCROLL
+ * =========================================================
  */
 
 .scrollIndicator {
@@ -442,7 +513,9 @@
 .scrollLabel {
   font-size: 0.6rem;
   font-weight: 700;
+
   letter-spacing: 0.15em;
+
   text-transform: uppercase;
 }
 
@@ -458,109 +531,187 @@
 }
 
 /*
- * Mobile pequeno
+ * =========================================================
+ * MOBILE PEQUENO
+ * 320px → 479px
+ * =========================================================
  */
 
-@media (max-width: 639px) {
+@media (max-width: 479px) {
   .hero {
-    padding-top: 6.5rem;
+    padding-top: 6rem;
     padding-bottom: 3rem;
   }
 
   .heroContent {
-    width: 100%;
+    gap: 2.5rem;
   }
 
-  .heroVisual {
-    min-height: 23rem;
-
-    margin-top: 3rem;
+  .heroText {
+    max-width: none;
   }
 
-  .visualAccent {
-    top: 0;
-    right: 2%;
+  .eyebrow {
+    margin-bottom: 1rem;
 
-    width: 82%;
-    height: 80%;
+    font-size: 0.65rem;
   }
 
-  .visualCard {
-    width: calc(100% - 2rem);
+  .title {
+    /*
+     * Bem menor para telas estreitas.
+     */
+    font-size: clamp(2.5rem, 13vw, 3.5rem);
 
-    min-height: 21rem;
-
-    padding: 0.85rem;
+    line-height: 0.92;
   }
 
-  .visualMain {
-    height: 14rem;
+  .titleHighlight {
+    /*
+     * Permite a palavra quebrar quando necessário.
+     */
+    overflow-wrap: anywhere;
   }
 
-  .visualFooter {
-    font-size: 0.4rem;
-  }
-}
+  .description {
+    margin-top: 1.25rem;
 
-/*
- * Tablet
- */
+    font-size: 0.9rem;
 
-@media (min-width: 640px) {
-  .hero {
-    padding-top: 8rem;
+    line-height: 1.6;
   }
 
-  .heroVisual {
-    min-height: 25rem;
-
-    margin-top: 4rem;
-  }
-
-  // .actions {
-  //   flex-direction: row;
-
-  //   width: auto;
-  // }
   .actions {
-    flex-direction: row;
-
-    width: auto;
+    margin-top: 1.5rem;
   }
 
   .primaryButton,
   .secondaryButton {
-    width: auto;
-
-    min-width: 11rem;
+    width: 100%;
   }
 
-  .visualCard {
-    width: min(70%, 25rem);
-
+  .heroVisual {
     min-height: 22rem;
   }
 
-  .visualMain {
-    height: 15rem;
+  .visualAccent {
+    top: 3%;
+    right: 2%;
+
+    width: 72%;
+    height: 68%;
+  }
+
+  .visualCard {
+    width: calc(100% - 1.5rem);
+
+    padding: 0.8rem;
+  }
+
+  .visualFooter {
+    font-size: 0.38rem;
   }
 }
 
 /*
- * Desktop
+ * =========================================================
+ * MOBILE
+ * 480px → 639px
+ * =========================================================
+ */
+
+@media (min-width: 480px) and (max-width: 639px) {
+  .hero {
+    padding-top: 6.5rem;
+  }
+
+  .title {
+    font-size: clamp(3rem, 11vw, 4.5rem);
+  }
+
+  .heroVisual {
+    min-height: 24rem;
+  }
+
+  .visualAccent {
+    width: 70%;
+    height: 70%;
+  }
+
+  .visualCard {
+    width: min(88%, 25rem);
+  }
+}
+
+/*
+ * =========================================================
+ * TABLET
+ * 640px → 767px
+ * =========================================================
+ */
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .hero {
+    padding-top: 7rem;
+  }
+
+  .heroContent {
+    gap: 3.5rem;
+  }
+
+  .title {
+    font-size: clamp(3.5rem, 9vw, 5rem);
+  }
+
+  /*
+   * IMPORTANTE:
+   * ainda não colocamos os botões em linha.
+   * 3 botões de 11rem não cabem confortavelmente.
+   */
+
+  .actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    flex: 1 1 10rem;
+
+    width: auto;
+    min-width: 0;
+  }
+
+  .heroVisual {
+    min-height: 26rem;
+  }
+
+  .visualAccent {
+    width: 65%;
+    height: 68%;
+  }
+
+  .visualCard {
+    width: min(70%, 25rem);
+  }
+}
+
+/*
+ * =========================================================
+ * DESKTOP
+ * 768px+
+ * =========================================================
  */
 
 @media (min-width: 768px) {
   .hero {
-    padding: 8rem 0 5rem;
+    padding: 7rem 0 4rem;
   }
 
   .heroContent {
-    display: grid;
-
     grid-template-columns:
-      minmax(0, 1.05fr)
-      minmax(20rem, 0.95fr);
+      minmax(0, 1fr)
+      minmax(20rem, 0.75fr);
 
     align-items: center;
 
@@ -568,63 +719,52 @@
   }
 
   .title {
-    font-size: clamp(4rem, 7vw, 6.5rem);
+    font-size: clamp(3.8rem, 6vw, 6rem);
   }
 
   .description {
-    margin-top: 2rem;
+    margin-top: 1.75rem;
+  }
 
-    font-size: 1rem;
+  .actions {
+    flex-direction: row;
+
+    width: auto;
+
+    flex-wrap: wrap;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: auto;
+
+    min-width: 10rem;
   }
 
   /*
-   * A partir daqui o visual volta
-   * a usar posicionamento sobreposto.
+   * VISUAL
    */
 
   .heroVisual {
-    display: block;
-
-    height: 32rem;
-    min-height: 0;
-
-    margin-top: 0;
+    min-height: 30rem;
   }
 
   .visualAccent {
-    top: 0;
+    top: 3%;
     right: 4%;
 
-    width: 78%;
-    height: 78%;
+    width: 62%;
+    height: 62%;
   }
 
   .visualCard {
-    position: absolute;
+    width: min(82%, 25rem);
 
-    top: 50%;
-    left: 50%;
-
-    width: 78%;
-    height: 70%;
-    min-height: 0;
-
-    padding: 1.25rem;
-
-    transform: translate(-50%, -50%);
+    transform: translateY(-1rem);
   }
 
   .visualMain {
-    height: auto;
-
-    flex: 1;
-
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .profileImage {
-    object-fit: contain;
+    aspect-ratio: 4 / 3;
   }
 
   .scrollIndicator {
@@ -633,29 +773,125 @@
 }
 
 /*
- * Large desktop
+ * =========================================================
+ * DESKTOP MAIOR
+ * 1024px+
+ * =========================================================
  */
 
 @media (min-width: 1024px) {
   .hero {
-    padding-bottom: 6rem;
+    padding: 7rem 0 4rem;
   }
 
+  .heroContent {
+    grid-template-columns:
+      minmax(0, 1.1fr)
+      minmax(22rem, 0.9fr);
+
+    gap: 4rem;
+  }
+
+  .title {
+    font-size: clamp(4rem, 5.7vw, 6rem);
+  }
+
+  .heroVisual {
+    min-height: 32rem;
+  }
+
+  .visualAccent {
+    top: 3%;
+    right: 4%;
+
+    width: 60%;
+    height: 62%;
+  }
+
+  .visualCard {
+    width: min(78%, 25rem);
+
+    transform: translateY(-2rem);
+  }
+}
+
+/*
+ * =========================================================
+ * DESKTOP GRANDE
+ * =========================================================
+ */
+
+@media (min-width: 1280px) {
   .heroContent {
     gap: 5rem;
   }
 
   .heroVisual {
-    height: 36rem;
+    min-height: 34rem;
+  }
+
+  .visualAccent {
+    width: 58%;
+    height: 60%;
   }
 
   .visualCard {
-    width: 76%;
+    width: min(74%, 25rem);
   }
 }
 
 /*
- * Reduced motion
+ * =========================================================
+ * TELAS DESKTOP COM POUCA ALTURA
+ * =========================================================
+ */
+
+@media (min-width: 1024px) and (max-height: 800px) {
+  .hero {
+    min-height: 100svh;
+
+    padding-top: 6rem;
+    padding-bottom: 3rem;
+  }
+
+  .heroContent {
+    gap: 3rem;
+  }
+
+  .title {
+    font-size: clamp(3.5rem, 5vw, 5rem);
+  }
+
+  .description {
+    margin-top: 1.25rem;
+  }
+
+  .actions {
+    margin-top: 1.5rem;
+  }
+
+  .heroVisual {
+    min-height: 27rem;
+  }
+
+  .visualAccent {
+    top: 2%;
+
+    width: 58%;
+    height: 58%;
+  }
+
+  .visualCard {
+    width: min(72%, 22rem);
+
+    transform: translateY(-1.5rem);
+  }
+}
+
+/*
+ * =========================================================
+ * REDUÇÃO DE MOVIMENTO
+ * =========================================================
  */
 
 @media (prefers-reduced-motion: reduce) {
